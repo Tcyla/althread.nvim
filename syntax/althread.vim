@@ -9,8 +9,8 @@ endif
 syntax case match
 
 " Comments
-syntax region althreadCommentLine start=+//+ end=+$+ keepend
-syntax region althreadCommentBlock start=+/\*+ end=+\*/+ keepend
+syntax region althreadCommentLine start=+//+ end=+$+ keepend contains=NONE
+syntax region althreadCommentBlock start=+/\*+ end=+\*/+ keepend contains=NONE
 
 " Strings and escapes
 syntax region althreadStringD start=+"+ skip=+\\.+ end=+"+ contains=althreadEscape
