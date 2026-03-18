@@ -1,0 +1,29 @@
+*althread.txt*          Althread plugin for Vim/Neovim          *althread*
+
+Author: Tcyla
+
+INTRODUCTION                                            *althread-introduction*
+
+This plugin adds support for the Althread language:
+- filetype detection for *.alt and *.althread
+- syntax highlighting
+- colorscheme: althread_night
+
+COMMANDS                                                *althread-commands*
+
+:AlthreadNight     Load bundled colorscheme.
+
+LUA API                                                   *althread-lua*
+
+require('althread').setup({
+  filetype = true,                -- use nvim filetype.add()
+  colorscheme = 'althread_night', -- auto-load colorscheme
+})
+
+INSTALL                                                  *althread-install*
+
+Use your plugin manager with this repository.
+Then run:
+  :helptags ALL
+
+vim:tw=78:ts=8:noet:ft=help:norl:

@@ -1,0 +1,16 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check runtime files exist
+        run: |
+          test -f syntax/althread.vim
+          test -f ftdetect/althread.vim
+          test -f colors/althread_night.vim
