@@ -35,6 +35,23 @@ local function register_parser_config(parser_config)
 end
 
 local function start_treesitter(bufnr, cfg)
+  local has_parser = pcall(vim.treesitter.language.add, "althread")
+  if not has_parser then
+    if cfg.fallback_to_vim_syntax then
+      vim.bo[bufnr].syntax = "althread"
+    end
+    return false
+  end
+
+  -- Guard against invalid highlight queries causing runtime failures.
+  local query_ok = pcall(vim.treesitter.query.get, "althread", "highlights")
+  if not query_ok then
+    if cfg.fallback_to_vim_syntax then
+      vim.bo[bufnr].syntax = "althread"
+    end
+    return false
+  end
+
   local ok = pcall(vim.treesitter.start, bufnr, "althread")
   if ok then
     if cfg.clear_vim_syntax then

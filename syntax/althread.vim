@@ -17,9 +17,6 @@ syntax region althreadStringD start=+"+ skip=+\\.+ end=+"+ contains=althreadEsca
 syntax region althreadStringS start=+'+ skip=+\\.+ end=+'+ contains=althreadEscape
 syntax match  althreadEscape /\\./ contained
 
-" Regex literal (best-effort, avoids // and /*)
-syntax match althreadRegex /\/\([^\/*\n\\]\|\\.\|\[[^\]\\\n]\+\]\)\+\/[gimsuy]*/
-
 " Numbers
 syntax match althreadNumberHex /\<0x[0-9A-Fa-f_]+n\?\>/
 syntax match althreadNumberBin /\<0b[01_]+n\?\>/
@@ -76,7 +73,6 @@ highlight default link althreadCommentBlock Comment
 highlight default link althreadStringD String
 highlight default link althreadStringS String
 highlight default link althreadEscape SpecialChar
-highlight default link althreadRegex SpecialString
 
 highlight default link althreadNumberHex Number
 highlight default link althreadNumberBin Number
