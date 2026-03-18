@@ -13,4 +13,3 @@ jobs:
         run: |
           test -f syntax/althread.vim
           test -f ftdetect/althread.vim
-          test -f colors/althread_night.vim

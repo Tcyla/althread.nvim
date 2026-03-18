@@ -5,7 +5,7 @@ Neovim plugin for the Althread language.
 ## Features
 
 - Filetype detection for `.alt` and `.althread`
-- Syntax highlighting
+- Tree-sitter first highlighting (with Vim syntax fallback)
 - Bundled colorscheme: `althread_night`
 - Simple Lua setup API
 
@@ -15,11 +15,13 @@ Neovim plugin for the Althread language.
 
 ```lua
 {
-  "tcyla/althread-vim",
+  "tcyla/althread.nvim",
   config = function()
     require("althread").setup({
       filetype = true,
-      colorscheme = "althread_night",
+      treesitter = {
+        enable = true,
+      },
     })
   end,
 }
@@ -29,15 +31,41 @@ Neovim plugin for the Althread language.
 
 ```lua
 use {
-  "tcyla/althread-vim",
+  "tcyla/althread.nvim",
   config = function()
     require("althread").setup({
       filetype = true,
-      colorscheme = "althread_night",
+      treesitter = {
+        enable = true,
+      },
     })
   end,
 }
 ```
+
+## Tree-sitter parser
+
+This plugin ships queries in `queries/althread/highlights.scm`.
+You still need an Althread Tree-sitter parser installed in Neovim.
+
+If you use `nvim-treesitter`, you can pass parser config:
+
+```lua
+require("althread").setup({
+  treesitter = {
+    enable = true,
+    parser_config = {
+      install_info = {
+        url = "https://github.com/your-org/tree-sitter-althread",
+        files = { "src/parser.c" },
+      },
+      filetype = "althread",
+    },
+  },
+})
+```
+
+Without parser, plugin falls back to `syntax/althread.vim`.
 
 ## Manual usage
 
@@ -49,6 +77,10 @@ or
 
 ```vim
 :AlthreadNight
+```
+
+```vim
+:AlthreadTreeSitter
 ```
 
 ## Layout

@@ -6,19 +6,28 @@ INTRODUCTION                                            *althread-introduction*
 
 This plugin adds support for the Althread language:
 - filetype detection for *.alt and *.althread
-- syntax highlighting
-- colorscheme: althread_night
+- Tree-sitter first highlighting
+- Vim syntax fallback when parser is unavailable
 
 COMMANDS                                                *althread-commands*
 
 :AlthreadNight     Load bundled colorscheme.
+:AlthreadTreeSitter  Enable Tree-sitter setup for althread filetype.
 
 LUA API                                                   *althread-lua*
 
 require('althread').setup({
   filetype = true,                -- use nvim filetype.add()
-  colorscheme = 'althread_night', -- auto-load colorscheme
+  treesitter = {
+    enable = true,
+    clear_vim_syntax = true,
+    fallback_to_vim_syntax = true,
+    parser_config = nil,
+  },
 })
+
+If you use nvim-treesitter, parser_config can be provided to register
+the Althread parser config in nvim-treesitter.parsers.
 
 INSTALL                                                  *althread-install*
 
